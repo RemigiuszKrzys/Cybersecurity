@@ -1,0 +1,104 @@
+# Day 2 — Network Conversations (Wireshark)
+
+## Objective
+
+Analyze network traffic and determine whether any suspicious or malicious activity is present.
+
+## Tools
+
+* Wireshark
+
+## Context
+
+Traffic was captured using Wireshark during DNS and HTTP activity.
+The goal was to observe communication patterns between the local host and external systems.
+
+## Findings
+
+* **Host:** 10.0.2.15
+* **External IPs:**
+
+  * 185.125.190.48
+  * 185.125.190.58
+* **Local network:**
+
+  * 192.168.1.1 (router)
+* **Multicast:**
+
+  * 224.0.0.251 (mDNS)
+
+## Analysis
+
+* All connections were initiated by the local host (10.0.2.15)
+* No inbound connections detected
+* Low number of packets observed
+* No repeated or high-frequency communication patterns
+* Traffic appears consistent with normal user activity
+
+## Security Perspective
+
+From a SOC analyst perspective:
+
+* No indicators of brute-force attacks
+* No scanning behavior detected
+* No suspicious external IP addresses
+* No anomalies in traffic patterns
+
+## Conclusion
+-------------------------------
+
+# Dzień 2 — Analiza komunikacji sieciowej (Wireshark)
+
+## Cel
+
+Przeanalizować ruch sieciowy i ustalić, czy występuje jakakolwiek podejrzana lub złośliwa aktywność.
+
+## Narzędzia
+
+* Wireshark
+
+## Kontekst
+
+Ruch sieciowy został zarejestrowany za pomocą programu Wireshark podczas operacji DNS i HTTP.
+Celem było zaobserwowanie wzorców komunikacji między lokalnym hostem a systemami zewnętrznymi.
+
+## Wyniki
+
+* **Host:** 10.0.2.15
+* **Zewnętrzne adresy IP:**
+
+  * 185.125.190.48
+  * 185.125.190.58
+* **Sieć lokalna:**
+
+  * 192.168.1.1 (router)
+* **Multicast:**
+
+  * 224.0.0.251 (mDNS)
+
+## Analiza
+
+* Wszystkie połączenia zostały zainicjowane przez lokalny host (10.0.2.15)
+* Nie wykryto połączeń przychodzących
+* Obserwowano niewielką liczbę pakietów
+* Brak powtarzających się lub częstych wzorców komunikacji
+* Ruch wydaje się zgodny z normalną aktywnością użytkownika
+
+## Perspektywa bezpieczeństwa
+
+Z punktu widzenia analityka SOC:
+
+* Brak oznak ataków typu brute-force
+* Nie wykryto działań skanujących
+* Brak podejrzanych zewnętrznych adresów IP
+* Brak anomalii we wzorcach ruchu
+
+## Wnioski
+
+Analizowany ruch wydaje się normalny.
+Nie zidentyfikowano żadnych oznak złośliwej aktywności.
+
+
+Przetłumaczono z DeepL.com (wersja darmowa)
+The analyzed traffic appears normal.
+No signs of malicious activity were identified.
