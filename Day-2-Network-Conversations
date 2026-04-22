@@ -1,0 +1,36 @@
+I used: Wireshark
+Findings
+Host: 10.0.2.15
+External IPs:
+185.125.190.48
+185.125.190.58
+Local:
+192.168.1.1
+Multicast:
+224.0.0.251 (mDNS)
+🔹 Analysis
+All connections initiated by local host
+Low packet count
+No unusual traffic patterns
+🔹 Conclusion
+Traffic appears normal.
+No signs of malicious activity.
+
+-------------------------
+Wykorzystałem: Wireshark
+Wyniki
+Host: 10.0.2.15
+Zewnętrzne adresy IP:
+185.125.190.48
+185.125.190.58
+Lokalne:
+192.168.1.1
+Multicast:
+224.0.0.251 (mDNS)
+🔹 Analiza
+Wszystkie połączenia zainicjowane przez lokalny host
+Niska liczba pakietów
+Brak nietypowych wzorców ruchu
+🔹 Wniosek
+Ruch wydaje się normalny.
+Brak oznak złośliwej aktywności.
