@@ -1,0 +1,268 @@
+# 🔎 Day 7 — Port Scanning Detection (Nmap + Wireshark)
+
+## 🎯 Objective
+
+The goal of this exercise was to understand how port scanning looks in network traffic and how to distinguish it from normal communication.
+
+---
+
+## 🛠️ Tools Used
+
+* Wireshark
+* Nmap
+* Linux (Ubuntu)
+
+---
+
+## ⚙️ Commands Used
+
+### Nmap scan:
+
+```bash
+nmap -4 -sS 10.0.2.15
+```
+
+### Wireshark filter:
+
+```text
+ip.addr == 10.0.2.15 and tcp.flags.syn == 1 and tcp.flags.ack == 0
+```
+
+---
+
+## 📡 What I Observed
+
+* Multiple TCP packets with `[SYN]` flag
+* No `[ACK]` flag → connection not completed
+* Traffic originated from my local host (`10.0.2.15`)
+* Destination ports included:
+
+  * 80 (HTTP)
+  * 443 (HTTPS)
+* Some packets were retransmissions
+* Traffic involved external IP addresses (e.g. `91.189.x.x`, `185.125.x.x`)
+
+---
+
+## 🧠 Analysis
+
+### 1. SYN packets meaning
+
+SYN packets indicate an attempt to initiate a TCP connection.
+
+However:
+
+* No ACK response means the connection was not completed
+* This is typical behavior for scanning tools like Nmap
+
+---
+
+### 2. Difference between scan and normal traffic
+
+#### Normal traffic:
+
+* Usually targets specific ports (80, 443)
+* Completes full TCP handshake (SYN → SYN-ACK → ACK)
+* Communication continues (data exchange)
+
+#### Observed traffic:
+
+* SYN packets only (no full handshake)
+* Short bursts of connection attempts
+* Some retransmissions
+
+---
+
+### 3. Important observation
+
+Not all SYN packets indicate malicious activity.
+
+In this case:
+
+* Some traffic resembled normal system communication (web traffic)
+* Lack of multiple destination ports suggests this was not a full aggressive scan
+
+---
+
+## ⚠️ Issues / Mistakes
+
+* Initial capture included background system traffic
+* IPv6 traffic introduced noise in earlier attempts
+* Scan was not fully isolated from normal traffic
+* Results were partially mixed (scan + regular communication)
+
+---
+
+## ✅ Improvements Applied
+
+* Forced IPv4 scan using `-4`
+* Narrowed down traffic using more precise Wireshark filters
+* Focused only on SYN packets without ACK
+
+---
+
+## 🎯 Key Takeaways
+
+1. SYN without ACK = connection attempt, not full communication
+2. Port scanning generates multiple SYN packets to different ports
+3. Normal traffic usually completes the TCP handshake
+4. Background system traffic can interfere with analysis
+5. Filtering is critical to isolate meaningful patterns
+
+---
+
+## 🧩 Final Conclusion
+
+The captured traffic showed elements of SYN-based probing, but also included normal system communication.
+
+This exercise demonstrated that:
+
+* detecting attacks requires understanding patterns, not just packets
+* not every suspicious-looking packet is malicious
+* proper filtering and isolation are essential for accurate analysis
+
+---
+
+## 🚀 Next Step
+
+Learn how to distinguish:
+
+* port scanning vs brute force attacks
+* SYN scan vs full TCP connection behavior
+
+
+detecting attacks requires understanding patterns, not just packets
+not every suspicious-looking packet is malicious
+proper filtering and isolation are essential for accurate analysis
+
+
+-----------------------
+
+🎯 Cel
+
+Celem tego ćwiczenia było zrozumienie, jak skanowanie portów wygląda w ruchu sieciowym oraz jak odróżnić je od normalnej komunikacji.
+
+---
+
+## 🛠️ Wykorzystane narzędzia
+
+* Wireshark
+* Nmap
+* Linux (Ubuntu)
+
+---
+
+## ⚙️ Użyte polecenia
+
+### Skanowanie Nmap:
+
+```bash
+nmap -4 -sS 10.0.2.15
+```
+
+### Filtr Wireshark:
+
+```text
+ip.addr == 10.0.2.15 and tcp.flags.syn == 1 and tcp.flags.ack == 0
+```
+
+---
+
+## 📡 Co zaobserwowałem
+
+* Wiele pakietów TCP z flagą `[SYN]`
+* Brak flagi `[ACK]` → połączenie nie zostało nawiązane
+* Ruch pochodził z mojego lokalnego hosta (`10.0.2.15`)
+* Porty docelowe obejmowały:
+
+  * 80 (HTTP)
+  * 443 (HTTPS)
+* Niektóre pakiety były retransmisjami
+* Ruch obejmował zewnętrzne adresy IP (np. `91.189.x.x`, `185.125.x.x`)
+
+---
+
+## 🧠 Analiza
+
+### 1. Znaczenie pakietów SYN
+
+Pakiety SYN wskazują na próbę zainicjowania połączenia TCP.
+
+Jednak:
+
+* Brak odpowiedzi ACK oznacza, że połączenie nie zostało nawiązane
+* Jest to typowe zachowanie narzędzi skanujących, takich jak Nmap
+
+---
+
+### 2. Różnica między skanowaniem a normalnym ruchem
+
+#### Normalny ruch:
+
+* Zazwyczaj kierowany jest do konkretnych portów (80, 443)
+* Przechodzi pełny proces uzgadniania połączenia TCP (SYN → SYN-ACK → ACK)
+* Komunikacja jest kontynuowana (wymiana danych)
+
+#### Obserwowany ruch:
+
+* Tylko pakiety SYN (brak pełnego uzgodnienia)
+* Krótkie serie prób nawiązania połączenia
+* Niektóre retransmisje
+
+
+ 3. Ważna uwaga
+
+Nie wszystkie pakiety SYN wskazują na złośliwą aktywność.
+
+W tym przypadku:
+
+* Część ruchu przypominała normalną komunikację systemową (ruch internetowy)
+* Brak wielu portów docelowych sugeruje, że nie było to pełne, agresywne skanowanie
+
+---
+
+## ⚠️ Problemy / Błędy
+
+* Początkowy zapis obejmował ruch systemowy w tle
+* Ruch IPv6 powodował zakłócenia we wcześniejszych próbach
+* Skanowanie nie zostało w pełni odizolowane od normalnego ruchu
+* Wyniki były częściowo mieszane (skanowanie + zwykła komunikacja)
+
+---
+
+## ✅ Wprowadzone ulepszenia
+
+* Wymuszone skanowanie IPv4 przy użyciu `-4`
+* Zawężenie ruchu przy użyciu bardziej precyzyjnych filtrów Wireshark
+* Skupienie się wyłącznie na pakietach SYN bez ACK
+
+---
+
+## 🎯 Kluczowe wnioski
+
+1. SYN bez ACK = próba nawiązania połączenia, a nie pełna komunikacja
+2. Skanowanie portów generuje wiele pakietów SYN do różnych portów
+3. Normalny ruch zazwyczaj kończy uzgadnianie TCP
+4. Ruch systemowy w tle może zakłócać analizę
+5. Filtrowanie ma kluczowe znaczenie dla wyodrębnienia istotnych wzorców
+
+---
+
+## 🧩 Ostateczny wniosek
+
+Przechwycony ruch wykazywał elementy sondowania opartego na SYN, ale obejmował również normalną komunikację systemową.
+
+To ćwiczenie pokazało, że:
+
+* wykrywanie ataków wymaga zrozumienia wzorców, a nie tylko pakietów
+* nie każdy podejrzanie wyglądający pakiet jest złośliwy
+* właściwe filtrowanie i izolacja są niezbędne do dokładnej analizy
+
+---
+
+## 🚀 Następny krok
+
+Dowiedz się, jak odróżnić:
+
+* skanowanie portów od ataków brute force
+* skanowanie SYN od pełnego zachowania połączenia TCP
