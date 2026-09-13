@@ -1,0 +1,37 @@
+# Ćwiczenie 6 — Wazuh: PowerShell Script Block Logging i MITRE ATT&CK
+
+## Cel ćwiczenia
+
+Celem ćwiczenia było skonfigurowanie Wazuh do zbierania i analizowania zdarzeń PowerShell Script Block Logging z endpointu Windows.
+
+Ćwiczenie koncentrowało się na wykrywaniu aktywności PowerShell oraz powiązaniu wykrytego zdarzenia z frameworkiem MITRE ATT&CK.
+
+---
+
+## Środowisko laboratoryjne
+
+- **SIEM:** Wazuh 4.14.7
+- **Endpoint:** Windows-Lab
+- **System operacyjny:** Windows 10
+- **Wazuh Agent:** 4.14.7
+- **Wazuh Manager:** Ubuntu-Lab
+- **PowerShell:** Windows PowerShell
+- **MITRE ATT&CK:** T1057 – Process Discovery
+
+---
+
+## Konfiguracja
+
+PowerShell Script Block Logging został włączony za pomocą Local Group Policy:
+
+`Computer Configuration → Administrative Templates → Windows Components → Windows PowerShell → Turn on PowerShell Script Block Logging`
+
+Następnie agent Wazuh na Windows został skonfigurowany do zbierania zdarzeń z kanału PowerShell Operational.
+
+Do pliku `ossec.conf` dodano:
+
+```xml
+<localfile>
+  <location>Microsoft-Windows-PowerShell/Operational</location>
+  <log_format>eventchannel</log_format>
+</localfile>
