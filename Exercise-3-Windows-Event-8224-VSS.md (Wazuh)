@@ -1,0 +1,41 @@
+# Exercise 3 – Windows Event ID 8224 – Volume Shadow Copy Service (VSS)
+
+## Cel ćwiczenia
+
+Celem ćwiczenia była analiza zdarzenia Windows Event ID 8224 w systemie Wazuh oraz ocena jego znaczenia z perspektywy analityka SOC.
+
+## Analiza zdarzenia
+
+W Wazuh Threat Hunting wyszukałem zdarzenia przy użyciu filtra:
+
+`data.win.system.eventID:8224`
+
+Wyniki wyszukiwania:
+
+- Event ID: 8224
+- Liczba zdarzeń: 3
+- Agent: Windows-Lab
+- Opis zdarzenia: The VSS service is shutting down due to idle timeout.
+- Wazuh Rule ID: 60702
+- Poziom reguły: 5
+- Usługa: Volume Shadow Copy Service (VSS)
+
+Zdarzenie informuje o zamknięciu usługi Volume Shadow Copy Service (VSS) z powodu przekroczenia czasu bezczynności.
+
+## Ocena SOC
+
+Samo wystąpienie Event ID 8224 nie oznacza ataku ani złośliwej aktywności.
+
+W analizowanym środowisku laboratoryjnym zdarzenie zostało sklasyfikowane jako **Informational / Benign**, ponieważ zamknięcie usługi VSS z powodu bezczynności może być normalnym zachowaniem systemu Windows.
+
+Jednocześnie VSS jest istotną usługą z punktu widzenia bezpieczeństwa. W przypadku analizy incydentu należy zwrócić uwagę na nietypowe operacje związane z kopiami woluminów, ich usuwaniem lub manipulowaniem usługą VSS, szczególnie jeśli występują one razem z innymi podejrzanymi zdarzeniami.
+
+## Wniosek
+
+Ćwiczenie pokazało, jak wykorzystać Wazuh Threat Hunting do wyszukania zdarzeń związanych z usługą VSS oraz jak ocenić ich znaczenie w kontekście aktywności systemu.
+
+Event ID 8224 w tym przypadku nie wskazuje na incydent bezpieczeństwa. Ocena zdarzenia wymaga jednak uwzględnienia kontekstu oraz korelacji z innymi zdarzeniami z endpointu.
+
+## Screenshot
+
+![Wazuh - Event ID 8224 - VSS](8224.png)
