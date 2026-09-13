@@ -1,0 +1,68 @@
+# Exercise 4 – Windows Event ID 4625 – Failed Logon
+
+## Cel ćwiczenia
+
+Celem ćwiczenia było celowe wygenerowanie nieudanego logowania w systemie Windows, a następnie wykrycie i analiza tego zdarzenia w Wazuh Threat Hunting.
+
+## Wygenerowanie zdarzenia
+
+Na endpointcie Windows-Lab wykonano celowo nieudaną próbę logowania poprzez podanie błędnego hasła dla użytkownika `Remigiusz`.
+
+Następnie zalogowano się prawidłowym hasłem, aby potwierdzić normalne działanie systemu.
+
+## Analiza zdarzenia
+
+W Wazuh Threat Hunting wyszukałem zdarzenie przy użyciu filtra:
+
+`data.win.system.eventID:4625`
+
+Wyniki wyszukiwania:
+
+- Event ID: 4625
+- Liczba zdarzeń: 1
+- Agent: Windows-Lab
+- Użytkownik: `Remigiusz`
+- Domena: `DESKTOP-451GK4H`
+- Workstation: `DESKTOP-451GK4H`
+- Logon Type: `2` – Interactive
+- Adres IP: `127.0.0.1`
+- Kanał: `Security`
+- Event Record ID: `4074`
+- Failure Reason: `%%2313`
+- Wazuh Rule ID: `60122`
+- Poziom reguły: `5`
+- Opis reguły: `Logon Failure - Unknown user or bad password`
+
+Komunikat systemu Windows:
+
+`Logowanie na koncie nie powiodło się.`
+
+## Ocena SOC
+
+Zdarzenie zostało sklasyfikowane jako **Benign / Expected Activity**.
+
+Nieudane logowanie było działaniem celowym wykonanym w ramach ćwiczenia laboratoryjnego. Próba pochodziła z adresu `127.0.0.1`, a użytkownik oraz stacja robocza odpowiadały lokalnemu środowisku laboratoryjnemu.
+
+W rzeczywistym środowisku produkcyjnym Event ID 4625 wymagałby dalszej analizy. Szczególną uwagę należałoby zwrócić na liczbę nieudanych prób, częstotliwość ich występowania, źródłowy adres IP, konto użytkownika, typ logowania oraz korelację z innymi zdarzeniami.
+
+Pojedyncze nieudane logowanie nie jest samo w sobie dowodem ataku.
+
+## Wniosek
+
+Ćwiczenie pokazało pełny proces obsługi zdarzenia nieudanego logowania: od celowego wygenerowania zdarzenia, poprzez jego wyszukanie w Wazuh, aż do analizy najważniejszych pól i oceny z perspektywy analityka SOC.
+
+Event ID 4625 jest istotnym zdarzeniem bezpieczeństwa, ponieważ może wskazywać między innymi na błędne dane uwierzytelniające, próby uzyskania dostępu do konta lub ataki typu brute-force. Jego właściwa interpretacja wymaga jednak analizy kontekstu i korelacji z innymi zdarzeniami.
+
+## Screenshots
+
+### Wazuh – wykrycie Event ID 4625
+
+![Wazuh - Event ID 4625](4625.png)
+
+### Szczegóły zdarzenia – użytkownik i dane logowania
+
+![Wazuh - Event ID 4625 Details](fourth%20screen.png)
+
+### Szczegóły reguły Wazuh
+
+![Wazuh - Rule 60122](third%20screen.png)
