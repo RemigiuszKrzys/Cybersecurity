@@ -1,0 +1,71 @@
+# Exercise 5 – Incident Correlation – Windows Logon Events
+
+## Cel ćwiczenia
+
+Celem ćwiczenia było przeprowadzenie korelacji kilku zdarzeń Windows Security w Wazuh oraz ocena ich znaczenia z perspektywy analityka SOC.
+
+Zamiast analizować pojedynczy alert w izolacji, przeanalizowałem sekwencję zdarzeń występujących w krótkim odstępie czasu:
+
+`4625 → 4624 → 4672`
+
+## Analizowana sekwencja zdarzeń
+
+### 1. Event ID 4625 – Failed Logon
+
+O godzinie około **20:03:30** został zarejestrowany Event ID 4625, oznaczający nieudaną próbę logowania.
+
+Najważniejsze informacje:
+
+- Event ID: 4625
+- Użytkownik: `Remigiusz`
+- Logon Type: `2` – Interactive
+- Adres IP: `127.0.0.1`
+- Wazuh Rule ID: `60122`
+- Poziom: `5`
+- Opis: `Logon Failure - Unknown user or bad password`
+
+Zdarzenie zostało wygenerowane celowo poprzez podanie nieprawidłowego hasła w ramach ćwiczenia laboratoryjnego.
+
+### 2. Event ID 4624 – Successful Logon
+
+Około **4 sekundy później**, o godzinie około **20:03:34**, Wazuh zarejestrował Event ID 4624 oznaczający pomyślne logowanie.
+
+Najważniejsze informacje:
+
+- Event ID: 4624
+- Użytkownik: `Remigiusz`
+- Logon Type: `2` – Interactive
+- Adres IP: `127.0.0.1`
+- Wazuh Rule ID: `60118`
+- Poziom: `3`
+- Opis: `Windows Workstation Logon Success`
+
+### 3. Event ID 4672 – Special Privileges Assigned to New Logon
+
+Praktycznie w tym samym momencie co pomyślne logowanie, około **20:03:34**, wystąpił Event ID 4672.
+
+Zdarzenie informuje o przyznaniu specjalnych uprawnień podczas nowego logowania.
+
+Najważniejsze informacje:
+
+- Event ID: 4672
+- Agent: `Windows-Lab`
+- Wazuh Rule ID: `67028`
+- Poziom: `3`
+- Opis: `Special privileges assigned to new logon`
+
+## Korelacja zdarzeń
+
+Analizowana sekwencja wygląda następująco:
+
+```text
+20:03:30
+4625 – Failed Logon
+        ↓
+około 4 sekundy
+        ↓
+20:03:34
+4624 – Successful Logon
+        ↓
+20:03:34
+4672 – Special Privileges Assigned
