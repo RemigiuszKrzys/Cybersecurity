@@ -1,0 +1,27 @@
+## Windows Event ID 4624 – Pomyślne logowanie
+
+Wykorzystałem Wazuh Threat Hunting do analizy zdarzenia Windows Security Event ID 4624, które oznacza pomyślne zalogowanie użytkownika.
+
+Zdarzenie zostało wygenerowane przez endpoint Windows-Lab i wykryte przez regułę Wazuh 60118 (poziom 3).
+
+### Analiza zdarzenia
+- Event ID: 4624
+- Zdarzenie: Pomyślne logowanie do stacji roboczej Windows
+- Agent: Windows-Lab
+- Wazuh Rule ID: 60118
+- Poziom reguły: 3
+- Typ logowania (Logon Type): 2 – logowanie interaktywne
+- Użytkownik: Remigiusz
+- Adres IP źródłowy: 127.0.0.1
+
+### Ocena
+Zdarzenie oznacza pomyślne, lokalne logowanie interaktywne użytkownika. W środowisku laboratoryjnym była to oczekiwana aktywność, dlatego zdarzenie zostało sklasyfikowane jako nieszkodliwe (benign).
+
+Ćwiczenie pokazuje, jak zidentyfikować zdarzenie uwierzytelnienia Windows w Wazuh, przeanalizować jego najważniejsze pola oraz określić, czy aktywność jest podejrzana na podstawie dostępnego kontekstu.
+
+
+
+### Screenshot
+
+![Wazuh – Event ID 4624](event-4624-successful-logon.png)
+
