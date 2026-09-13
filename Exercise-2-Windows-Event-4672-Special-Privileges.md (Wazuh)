@@ -1,0 +1,40 @@
+# Exercise 2 – Windows Event ID 4672 – Special Privileges Assigned to New Logon
+
+## Cel ćwiczenia
+
+Celem ćwiczenia była analiza zdarzenia Windows Security Event ID 4672 w systemie Wazuh oraz ocena, czy przyznanie specjalnych uprawnień podczas logowania może wskazywać na podejrzaną aktywność.
+
+## Analiza zdarzenia
+
+W Wazuh Threat Hunting wyszukałem zdarzenia przy użyciu filtra:
+
+`data.win.system.eventID:4672`
+
+Wyniki wyszukiwania:
+
+- Event ID: 4672
+- Liczba zdarzeń: 2
+- Agent: Windows-Lab
+- Opis zdarzenia: Special privileges assigned to new logon
+- Wazuh Rule ID: 67028
+- Poziom reguły: 3
+
+Event ID 4672 jest generowany, gdy podczas logowania do systemu Windows konto otrzymuje specjalne uprawnienia. Takie zdarzenie może występować podczas logowania kont administracyjnych lub innych kont posiadających podwyższone uprawnienia.
+
+## Ocena
+
+Samo wystąpienie Event ID 4672 nie oznacza automatycznie incydentu bezpieczeństwa.
+
+W analizowanym środowisku laboratoryjnym zdarzenia zostały sklasyfikowane jako **Benign / Expected Activity**, ponieważ są związane z normalnym działaniem konta użytkownika posiadającego odpowiednie uprawnienia.
+
+Z perspektywy analityka SOC Event ID 4672 może jednak być wartościowym elementem analizy korelacyjnej. Szczególną uwagę należy zwrócić na nieoczekiwane przyznanie uprzywilejowanych uprawnień, nietypowe konto użytkownika lub połączenie tego zdarzenia z innymi podejrzanymi zdarzeniami.
+
+## Wniosek
+
+Ćwiczenie pokazało, jak wykorzystać Wazuh Threat Hunting do wyszukania zdarzeń związanych z przyznawaniem specjalnych uprawnień w systemie Windows oraz jak ocenić je w kontekście całej aktywności użytkownika.
+
+Event ID 4672 sam w sobie nie jest dowodem ataku. Jego znaczenie zależy od kontekstu, konta, czasu wystąpienia oraz innych zdarzeń zarejestrowanych na endpointcie.
+
+## Screenshot
+
+![Wazuh - Event ID 4672](4672.jpg)
