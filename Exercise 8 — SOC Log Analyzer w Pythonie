@@ -1,0 +1,37 @@
+# Exercise 8 — SOC Log Analyzer w Pythonie
+
+## Cel ćwiczenia
+
+Celem ćwiczenia było stworzenie prostego narzędzia w Pythonie, które automatyzuje podstawową analizę logów uwierzytelniania.
+
+Projekt symuluje jedno z podstawowych zadań wykonywanych w SOC — analizę nieudanych prób logowania i identyfikację źródeł, które mogą wymagać dalszej weryfikacji.
+
+Program automatycznie:
+- odczytuje plik z logami,
+- wyszukuje nieudane próby logowania,
+- wykrywa adresy IP,
+- zlicza liczbę prób z każdego adresu,
+- określa liczbę unikalnych źródeł,
+- klasyfikuje adresy IP jako `NORMAL` lub `SUSPICIOUS`,
+- wskazuje liczbę podejrzanych źródeł.
+
+---
+
+## Środowisko
+
+- Ubuntu 24.04 LTS
+- Python 3.12.3
+- Terminal Linux
+- moduł `re`
+- `collections.Counter`
+
+---
+
+## Struktura projektu
+
+```text
+Exercise 8
+├── soc_log_analyzer.py
+├── sample_auth.log
+├── Exercise-8-code.jpg
+└── Exercise-8-result.jpg
