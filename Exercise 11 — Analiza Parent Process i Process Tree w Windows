@@ -1,0 +1,52 @@
+# Ćwiczenie 11 — Analiza Parent Process i Process Tree w Windows
+
+## Cel ćwiczenia
+
+Celem ćwiczenia było przećwiczenie analizy relacji pomiędzy procesem nadrzędnym (Parent Process) a procesem utworzonym (Child Process) na podstawie Event ID 4688.
+
+Ćwiczenie było kontynuacją analizy Event ID 4688 z poprzedniego zadania, w którym skonfigurowano rejestrowanie Command Line.
+
+Tym razem skupiono się na odpowiedzi na pytanie:
+
+> Jaki proces uruchomił dany proces i w jaki sposób został on uruchomiony?
+
+---
+
+## Środowisko
+
+### Windows-Lab
+
+- Windows 10
+- Wazuh Agent 4.14.7
+- IP: `192.168.1.102`
+- PowerShell
+
+### Ubuntu-Lab
+
+- Ubuntu 24.04 LTS
+- Wazuh Manager 4.14.7
+- Wazuh Dashboard
+- IP: `192.168.1.103`
+
+---
+
+## 1. Event ID 4688 — Process Creation
+
+Event ID 4688 jest generowany przez Windows Security Auditing podczas utworzenia nowego procesu.
+
+W ramach ćwiczenia wykorzystano wcześniej skonfigurowane logowanie:
+
+```text
+Tworzenie procesu → Success
+
+Ćwiczenie pozwoliło przećwiczyć:
+
+analizę Event ID 4688,
+analizę Parent Process,
+analizę Child Process,
+analizę Process Tree,
+analizę Command Line,
+analizę użytkownika wykonującego operację,
+wyszukiwanie konkretnych procesów w Wazuh,
+analizę szczegółów zdarzenia w Wazuh Threat Hunting,
+podstawową klasyfikację zdarzenia z perspektywy SOC.
