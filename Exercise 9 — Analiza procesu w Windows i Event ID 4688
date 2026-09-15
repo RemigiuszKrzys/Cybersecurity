@@ -1,0 +1,30 @@
+Exercise 9 — Analiza procesu w Windows i Event ID 4688
+
+## Cel ćwiczenia
+
+Celem ćwiczenia było przećwiczenie monitorowania tworzenia procesów w systemie Windows z wykorzystaniem:
+
+- Windows Security Event Log
+- Event ID 4688 — A new process has been created
+- PowerShell
+- Wazuh Agent
+- Wazuh Manager
+- Wazuh Threat Hunting
+- podstawowej diagnostyki komunikacji sieciowej
+
+Ćwiczenie miało również pokazać pełną ścieżkę przepływu zdarzenia:
+
+```text
+Windows
+   ↓
+Security Log
+   ↓
+Event ID 4688
+   ↓
+Wazuh Agent
+   ↓
+TCP 1514
+   ↓
+Wazuh Manager
+   ↓
+Wazuh Dashboard
