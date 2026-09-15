@@ -1,0 +1,43 @@
+# Ćwiczenie 10 — Analiza Command Line procesu Windows w Wazuh
+
+## Cel ćwiczenia
+
+Celem ćwiczenia było rozszerzenie analizy Event ID 4688 o informacje dotyczące:
+
+- nazwy uruchomionego procesu,
+- ścieżki procesu,
+- procesu nadrzędnego,
+- identyfikatora procesu,
+- Command Line,
+- przesyłania tych informacji do Wazuh.
+
+Ćwiczenie pokazuje, że dla analityka SOC samo wykrycie uruchomienia procesu nie zawsze jest wystarczające. Ważne jest również ustalenie **w jaki sposób proces został uruchomiony i przez jaki proces nadrzędny**.
+
+---
+
+## Środowisko
+
+### Windows-Lab
+
+- Windows 10
+- IP: `192.168.1.102`
+- Wazuh Agent 4.14.7
+- PowerShell
+
+### Ubuntu-Lab
+
+- Ubuntu 24.04 LTS
+- IP: `192.168.1.103`
+- Wazuh Manager 4.14.7
+- Wazuh Dashboard
+
+---
+
+## 1. Event ID 4688
+
+Event ID **4688** jest generowany przez Windows Security Auditing podczas utworzenia nowego procesu.
+
+W poprzednim ćwiczeniu skonfigurowano audyt:
+
+```text
+Tworzenie procesu → Success
