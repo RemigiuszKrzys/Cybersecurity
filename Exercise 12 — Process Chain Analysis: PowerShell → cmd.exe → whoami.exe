@@ -1,0 +1,38 @@
+# Exercise 12 — Process Chain Analysis: PowerShell → cmd.exe → whoami.exe
+
+## Cel ćwiczenia
+
+Celem ćwiczenia było przeanalizowanie kontrolowanego łańcucha procesów Windows:
+
+**PowerShell → cmd.exe → whoami.exe**
+
+Ćwiczenie miało na celu praktyczne przećwiczenie analizy:
+
+- Parent Process
+- Child Process
+- Command Line
+- Event ID 4688
+- process tree
+- kontekstu wykonania procesu
+- danych zbieranych przez Wazuh
+
+---
+
+## Środowisko
+
+- Windows 10 — Windows-Lab
+- Ubuntu 24.04 — Ubuntu-Lab
+- Wazuh 4.14.7
+- Wazuh Agent — Windows-Lab
+- Event ID: **4688 — Process Creation**
+- Wazuh Rule: **67027 — A process was created**
+- Windows-Lab IP: `192.168.1.102`
+
+---
+
+## 1. Wygenerowanie kontrolowanego zdarzenia
+
+Na Windows-Lab wykonano polecenie:
+
+```powershell
+cmd /c whoami
