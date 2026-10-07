@@ -1,0 +1,32 @@
+# Exercise 13 — Network Traffic Analysis with Wireshark
+
+## 🎯 Cel ćwiczenia
+
+Celem ćwiczenia była praktyczna analiza ruchu sieciowego z wykorzystaniem Wireshark oraz poznanie sposobu analizy komunikacji na poziomie:
+
+- ICMP
+- ARP
+- DNS
+- TCP
+- TLS/HTTPS
+
+Ćwiczenie miało odwzorować podstawowe zadania wykonywane przez analityka SOC podczas analizy komunikacji sieciowej.
+
+---
+
+## 🖥️ Środowisko
+
+- Ubuntu-Lab
+- Ubuntu 24.04.4 LTS
+- Wireshark 4.2.2
+- interfejs sieciowy: `enp0s3`
+- adres IP: `192.168.1.103`
+
+---
+
+## 1. Analiza ICMP
+
+Do wygenerowania kontrolowanego ruchu ICMP wykorzystano:
+
+```bash
+ping -c 4 192.168.1.1
