@@ -1,0 +1,28 @@
+
+---
+
+# Exercise 14 — Network Threat Detection with Suricata + Wazuh
+
+```markdown
+# Exercise 14 — Network Threat Detection with Suricata + Wazuh
+
+## 🎯 Cel ćwiczenia
+
+Celem ćwiczenia było połączenie monitorowania ruchu sieciowego przez Suricata IDS z systemem Wazuh oraz przeprowadzenie analizy alertu z perspektywy analityka SOC.
+
+Ćwiczenie odwzorowuje podstawowy proces:
+
+```text
+Network Traffic
+      ↓
+Suricata IDS
+      ↓
+EVE JSON
+      ↓
+Wazuh
+      ↓
+Alert
+      ↓
+SOC Analysis
+      ↓
+Assessment
