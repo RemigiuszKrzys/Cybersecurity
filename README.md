@@ -8,6 +8,7 @@ Przekwalifikowuję się z międzynarodowej spedycji (10 lat doświadczenia) i uc
 
 - Ubuntu Linux
 - Wazuh (SIEM/XDR)
+- Suricata (IDS/IPS)
 - Windows (źródło zdarzeń do analizy)
 - Wireshark, Nmap
 - Python (analiza logów)
@@ -19,6 +20,7 @@ Przekwalifikowuję się z międzynarodowej spedycji (10 lat doświadczenia) i uc
 - Analiza procesów: Command Line, Parent Process, Process Tree
 - PowerShell Script Block Logging i mapowanie na MITRE ATT&CK
 - Analiza ruchu sieciowego i wykrywanie skanowania portów
+- Wykrywanie zagrożeń sieciowych: Suricata + Wazuh
 - Automatyzacja analizy logów w Pythonie
 - Podstawy oceny bezpieczeństwa systemu Linux
 
@@ -26,10 +28,10 @@ Przekwalifikowuję się z międzynarodowej spedycji (10 lat doświadczenia) i uc
 
 | Nr | Temat | Narzędzia |
 |----|-------|-----------|
-| Day 1 | Analiza incydentu | Wazuh |
-| Day 2 | Network Conversations – analiza rozmów sieciowych | Wireshark |
-| Day 3 | Wykrywanie skanowania portów | Nmap, Wireshark |
-| Day 4 | SIEM Fundamentals – laboratorium analityka SOC | Wazuh |
+| Ex. 1 | Mini analiza incydentu (logi Linux + Nmap) | Linux, Nmap |
+| Ex. 2 | Network Conversations – analiza rozmów sieciowych | Wireshark |
+| Ex. 3 | Wykrywanie skanowania portów | Nmap, Wireshark |
+| Ex. 4 | SIEM Fundamentals – laboratorium analityka SOC | Wazuh |
 | Ex. 1 | Event ID 4624 – udane logowanie | Wazuh |
 | Ex. 2 | Event ID 4672 – uprawnienia specjalne | Wazuh |
 | Ex. 3 | Event ID 8224 – VSS | Wazuh |
@@ -42,6 +44,8 @@ Przekwalifikowuję się z międzynarodowej spedycji (10 lat doświadczenia) i uc
 | Ex. 10 | Analiza Command Line procesu Windows | Wazuh |
 | Ex. 11 | Analiza Parent Process i Process Tree | Wazuh |
 | Ex. 12 | Process Chain Analysis: PowerShell → cmd.exe → whoami.exe | Wazuh |
+| Ex. 13 | Network Traffic Analysis | Wireshark |
+| Ex. 14 | Network Threat Detection | Suricata, Wazuh |
 
 ## Jak analizuję zdarzenie
 
